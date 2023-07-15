@@ -1,7 +1,7 @@
 # get-chicken-JS-DOM-Project
 Simple Project to practice JS DOM manipulation
 
-**DEMO:**
+**DEMO:** https://jessumguy.github.io/get-chicken-JS-DOM-Project/
 
 | Before Styling | After Styling |
 | --- | ---|
