@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+    <title>Get Chicks - JS DOM manipulation practice project</title>
+</head>
+<body>
+    <header>
+        <section id="header-left">
+            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                <defs>
+                    <linearGradient id="heart-gradient" gradientTransform="rotate(45)">
+                      <stop offset="0%" stop-color="rgba(131,58,180,1)" />
+                      <stop offset="50%" stop-color="rgba(253,29,29,1)" />
+                      <stop offset="100%" stop-color="rgba(252,69,165,1)" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </section>
+        <section id="header-right">
+            <h1>Get Chicks</h1>
+            <ul>
+                <li>Click the button below to get some chicks 🐤!</li>
+                <li><a href="https://github.com/jessumguy/get-chicken-JS-DOM-Project" title="My Github" class="url">Check out my My Github for more wacky projects!</a></li>
+            </ul>
+        </section>
+    </header>
+
+    <main>
+        <section id="section-top">
+            <button id="add-button">Get SOME 🐤!</button>
+            <button id="remove-button">Remove last item ✂️</button>
+        </section>
+        
+        <section id="section-bottom">
+            <div id="items-container">
+                <article id="article-container-start" class="article-container chick">
+                    <button class="remove-article-button" onclick="removeSelectedItem('article-container-start')"></button>
+                    <h3>Chick</h3>
+                    <img class="items" src="./items/chicken-front.png" alt="happy-chick">
+                    <p class="cry">bibibi!</p>
+                </article>
+                </article>
+            </div>
+
+            <div id="item-counter">
+                <dl>
+                    <dt>Total Chicks</dt>
+                    <dd id="chick-count">0</dd>
+                    <dt>Total Sealions</dt>
+                    <dd id="sealion-count">0</dd>
+                    <dt>Total Doge</dt>
+                    <dd id="doge-count">0</dd>
+                </dl>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <details>
+            <summary>Summary, caption, or legend for the content</summary>
+            <ul>
+                <li><a href="https://www.flaticon.com/free-icons/sea-lion" title="sea lion icons" class="url citation">Sea lion icons created by justicon - Flaticon</a></li>
+                <li><a href="https://www.flaticon.com/free-icons/chicken" title="chicken icons" class="url citation">Chicken icons created by Rohim - Flaticon</a></li>
+                <li><a href="https://www.flaticon.com/free-icons/chicken" title="chicken icons" class="url citation">Chicken icons created by Freepik - Flaticon</a></li>
+                <li><a href="http://cryptoicons.co/" title="doge coin icon" class="url citation">Doge Coin icon from cryptoicons</a></li>
+                <li><a href="https://pictogrammers.com/library/mdi/icon/heart-box/" title="heart logo" class="url citation">Heart Logo from Pictogrammers</a></li>
+            </ul>
+        </details>
+    </footer>
+
+    <style>
+
+        /* root */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        :root {
+            --honeydew: #F1FFE7;
+            --mintgreen: #C2E7DA;
+            --silverlakeblue: #6290C3;
+            --spacecadet: #1A1B41;
+            --lime: #BAFF29;
+        }
+
+        /* header */
+
+        header {
+            display: flex;
+            justify-content: center;
+            background-color: var(--silverlakeblue);
+            color: var(--spacecadet);
+        }
+
+        header {
+            padding-top: 13px;
+            padding-bottom: 13px;
+            /* border: 2px black solid; */
+        }
+
+        #header-left {
+            margin-right: 13px;
+            margin-left: 13px;
+        }
+
+        #header-left svg {
+            border: 3px purple solid;
+        }
+
+        #header-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 13px;
+            margin-left: 13px;
+        }
+
+        #header-right h1 {
+            padding-bottom: 8px;
+            color: var(--honeydew);
+        }
+
+        .url {
+            text-decoration: none;
+            font-size: 90%;
+            color: var(--mintgreen);
+        }
+
+        li .citation {
+            list-style-type: square;
+        }
+
+        .url:hover {
+            color: var(--lime)
+        }
+
+        /* main */
+
+        main {
+            background-color: var(--mintgreen);
+        }
+
+        #section-top {
+            display: flex;
+            justify-content: center;
+            padding-top: 13px;
+            padding-bottom: 13px;
+        }
+
+        #section-top button {
+            color: #fff;
+            border: 3px var(--spacecadet) solid; 
+            border-radius:10px;
+            padding:15px;
+            min-height:30px; 
+            min-width: 120px;
+        }
+
+        #add-button {
+            margin-right: 13px;
+            background-color: var(--spacecadet);
+        }
+
+        #add-button:hover {
+            background-color: var(--mintgreen);
+            border: 3px purple solid;
+            color: black;
+            transition: 0.3s;
+        }
+
+        #remove-button {
+            margin-left: 13px;
+            background-color: var(--silverlakeblue);
+        }
+
+        #remove-button:hover {
+            background-color: var(--mintgreen);
+            border: 3px purple solid;
+            color: black;
+            transition: 0.4s;
+        }
+
+        #section-top button:active {
+            transform: scale(0.9);
+            opacity: 0.8;
+        }
+
+        /* main - articles */
+
+        #section-bottom {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            padding: 0px 13px 13px 13px;
+            margin-left: 6rem;
+            margin-right: 6rem;
+        }
+
+        #items-container {
+            /* border: 2px  red solid; */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .article-container {
+            border-radius: 10px;
+            padding: 13px;
+            background-color: #fff;
+            width: 120px;
+            height: 140px;
+        }
+
+        /* main - item-counter */
+
+        #item-counter {
+            margin-top: 16px;
+        }
+
+        dl {
+            display: grid;
+            
+        }
+
+        dt {
+            background-color: var(--spacecadet);
+            color: var(--honeydew);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        dt, dd {
+            outline: 1px solid var(--spacecadet);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* footer */
+
+        footer {
+            background-color: var(--spacecadet);
+            padding: 13px 13px 0 13px;
+        }
+
+        summary {
+            color:#fff;
+        }
+
+        /* icons and images */
+
+        section .logo {
+            width: 6.5rem;
+            fill: url(#heart-gradient)
+        }
+
+        .items {
+            width: 4.5rem;
+            border: 2px solid black;
+        }
+
+        .article-container {
+            border: 2px solid black;
+        }
+
+        /* remove-button */
+
+        .remove-article-button:after{
+            display: inline-block;
+            content: "\00d7"; /* This will render the 'X' */
+            font-size: 1rem;
+        }
+
+        .remove-article-button {
+            float: right;
+            background-color: transparent;
+            border: none;
+            outline: 2px solid var(--spacecadet);
+            width: 1rem;
+            border-radius: 12px;
+        }
+
+        .remove-article-button:hover {
+            outline: 2px solid red;
+            color: red;
+        }
+
+        .remove-article-button:active {
+            outline: 2px solid red;
+            color: red;
+            transform: scale(0.9);
+            opacity: 0.8;
+        }
+
+    </style>
+
+    <script>
+
+        // Classes
+        class Item {
+            constructor(name, type, cry) {
+                this.name = name
+                this.type = type
+                this.cry = cry
+            }
+        }
+
+        class Chick extends Item {
+            constructor(name, type, cry, src) {
+                super(name, type, cry)
+                this.src = src
+            }
+        }
+
+        class Sealion extends Item {
+            constructor(name, type, cry, src){
+                super(name, type, cry)
+                this.src = src
+            }
+        }
+
+        class Doge extends Item {
+            constructor(name, type, cry, src){
+                super(name, type, cry)
+                this.src = src
+            }
+        }
+
+        const chickSrcs = [
+            "./items/chicken-front.png",
+            "./items/chicken-side.png",
+            "./items/happy.png",
+            "./items/laugh.png",
+        ]
+        const newChick = new Chick('Chick', 'chick', 'bibibi!', randomize(chickSrcs));
+        // console.log(newChick);
+
+        const newSealion = new Sealion('Sealion', 'sealion', 'owow!', './items/sea-lion.png');
+        // console.log(newSealion);
+
+        const newDoge = new Doge('Doge', 'doge', 'Woof!', './items/dogecoin-doge-logo.svg');
+        // console.log(newDoge);
+
+        const items = [
+            newChick,
+            newSealion,
+            newDoge,
+        ]
+
+        // Randomizer functions
+        function randomize(item) {
+            return item[Math.floor(Math.random()*item.length)]
+        }
+        // console.log(randomize(items));
+        // console.log(randomize([newChick.src, newSealion.src, newDoge.src]));
+
+        // Item Container
+        const itemContainer = document.querySelector('#items-container')
+        
+
+        // Buttons
+        const addButton = document.querySelector('#add-button');
+        const removeButton = document.querySelector('#remove-button');
+ 
+        addButton.addEventListener('click', () => {
+            addItem()
+        });
+
+        removeButton.addEventListener('click', () => {
+            removeLastItem();
+        });
+
+        // Add new Item
+        let articleContainerNo = 0;
+
+        function addItem() {
+            const itemKeys = Object.keys(randomize(items));
+            const itemValues = Object.values(randomize(items));
+            const itemNameValue = itemValues[0];
+            const itemTypeValue = itemValues[1];
+            const itemCryValue = itemValues[2];
+            const itemSrcValue = itemValues[3];
+
+            // Create new article element and append to itemContainer
+            
+            article = document.createElement('article');
+            article.setAttribute('id', `article-container-${articleContainerNo}`);
+            
+            article.classList.add('article-container', itemTypeValue);
+            itemContainer.appendChild(article);
+
+            // Create new name element and append to new article element
+            removeArticleButton = document.createElement('button');
+            removeArticleButton.classList.add('remove-article-button');
+            removeArticleButton.setAttribute('onclick', 'removeSelectedItem("'+'article-container-'+articleContainerNo+'")');
+            // removeArticleButton.textContent = 'X';
+            article.appendChild(removeArticleButton);
+
+            // Create new name element and append to new article element
+            articleTitle = document.createElement('h3');
+            articleTitle.classList.add('article-title');
+            articleTitle.textContent = itemNameValue;
+            article.appendChild(articleTitle);
+
+            // Create new img element and append to new article element
+            img = document.createElement('img');
+            img.classList.add('items');
+            img.src = itemSrcValue;
+            article.appendChild(img);
+
+            // Create new para element for Cry and append to new article element
+            cryPara = document.createElement('p')
+            cryPara.classList.add('cry')
+            cryPara.textContent = itemCryValue;
+            article.appendChild(cryPara);
+
+            articleContainerNo++;
+            itemCounter()
+            // console.dir(articleContainer)
+        }
+
+        // Remove last Item
+        function removeLastItem(){
+            let lastItem = itemContainer.lastChild;
+
+            if(lastItem !== null ) {
+                itemContainer.removeChild(lastItem);
+            }
+
+            itemCounter()
+        }
+
+        // Remove article Button - Event bubbling to addEventListener to dynamically created elements (https://typeofnan.dev/how-to-bind-event-listeners-on-dynamically-created-elements-in-javascript/)
+        // https://stackoverflow.com/questions/23504528/dynamically-remove-items-from-list-javascript
+        function removeSelectedItem(articleContainerNo){
+            const articleContainer = document.getElementById(articleContainerNo);
+            itemContainer.removeChild(articleContainer);
+            console.log(`removeSelectedItem ${articleContainerNo}`)
+            
+            itemCounter()
+        }
+
+       // Keeping track of items added/removed
+        const totalChickCounter = document.querySelector('#chick-count');
+        const totalSealionCounter = document.querySelector('#sealion-count');
+        const totalDogeCounter = document.querySelector('#doge-count');
+
+        function itemCounter() {
+            const chickCount = document.getElementsByClassName('chick').length
+            const sealionCount = document.getElementsByClassName('sealion').length
+            const dogeCount = document.getElementsByClassName('doge').length
+
+            totalChickCounter.textContent = chickCount;
+            totalSealionCounter.textContent = sealionCount;
+            totalDogeCounter.textContent = dogeCount;
+        }
+
+        itemCounter()
+        
+    </script>
+</body>
+</html>
